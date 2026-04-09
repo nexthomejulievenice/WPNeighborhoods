@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Find Your Best-Fit Wellen Park Neighborhood | Julie Willett</title>
+<meta content="Take this quick Wellen Park neighborhood quiz and get matched with the communities that best fit your lifestyle, budget, and home preferences." name="description"/>
+<style>
+    :root {
+      --blue: #236a95;
+      --blue-dark: #1c5272;
+      --orange: #ff6c2c;
+      --orange-dark: #e85a1b;
+      --ink: #18212a;
+      --muted: #5e6a75;
+      --line: #d7e5ef;
+      --bg: #f6fbff;
+      --card: #ffffff;
+      --success: #eaf7ef;
+      --success-text: #1e6a3a;
+      --warning: #fff6ea;
+      --warning-text: #925411;
+      --danger: #fff0ef;
+      --danger-text: #a13b33;
+      --shadow: 0 18px 45px rgba(20, 43, 64, 0.14);
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(255,108,44,.15), transparent 28%),
+        linear-gradient(145deg, #f8fbff 0%, #eef6fb 40%, #f8f3ee 100%);
+      min-height: 100vh;
+      padding: 28px 14px;
+    }
+
+    .shell {
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 58%, #2f7fad 100%);
+      color: #fff;
+      border-radius: 28px 28px 0 0;
+      padding: 30px 26px 24px;
+    }
+
+    .brand-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .brand {
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .hero-badge {
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 999px;
+      font-size: .84rem;
+      background: rgba(255,255,255,.12);
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.9rem, 3vw, 2.7rem);
+      line-height: 1.1;
+    }
+
+    .hero p {
+      margin: 0;
+      color: rgba(255,255,255,.9);
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 680px;
+    }
+
+    .frame {
+      background: var(--card);
+      border-radius: 0 0 28px 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      border: 1px solid rgba(35,106,149,.08);
+    }
+
+    .progress-wrap {
+      padding: 18px 26px 0;
+      background: linear-gradient(180deg, rgba(35,106,149,.05), transparent);
+    }
+
+    .progress-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: .92rem;
+      color: var(--muted);
+    }
+
+    .progress-track {
+      height: 8px;
+      border-radius: 999px;
+      background: #e7f0f6;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--orange) 0%, #ff9a55 100%);
+      width: 0%;
+      transition: width .35s ease;
+    }
+
+    .content {
+      padding: 26px;
+    }
+
+    .step { display: none; }
+    .step.active { display: block; }
+
+    .eyebrow {
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+
+    .question-title {
+      font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+      line-height: 1.3;
+      margin: 0 0 20px;
+    }
+
+    .helper {
+      margin: -8px 0 18px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: .98rem;
+    }
+
+    .options {
+      display: grid;
+      gap: 12px;
+    }
+
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      border: 1.5px solid var(--line);
+      background: #fff;
+      border-radius: var(--radius-md);
+      padding: 15px 16px;
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 1rem;
+      line-height: 1.45;
+      transition: transform .14s ease, border-color .14s ease, background .14s ease, box-shadow .14s ease;
+    }
+
+    .option-btn:hover {
+      border-color: var(--orange);
+      background: #fff8f4;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 18px rgba(255,108,44,.08);
+    }
+
+    .option-btn.selected {
+      border-color: var(--orange);
+      background: #fff5ef;
+      box-shadow: 0 0 0 3px rgba(255,108,44,.12);
+      font-weight: 700;
+    }
+
+    .nav-row {
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      margin-top: 22px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      border-radius: 12px;
+      padding: 13px 20px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .14s ease, opacity .14s ease, box-shadow .14s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn:disabled { cursor: not-allowed; transform: none; opacity: .56; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+      color: #fff;
+      box-shadow: 0 14px 26px rgba(255,108,44,.22);
+      flex: 1;
+      min-width: 210px;
+    }
+    .btn-secondary {
+      background: #fff;
+      color: var(--ink);
+      border: 1.5px solid var(--line);
+      min-width: 120px;
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--blue);
+      border: 1.5px solid rgba(35,106,149,.2);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .field-group { margin-bottom: 15px; }
+    .field-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 700;
+      font-size: .96rem;
+    }
+    .field-group input {
+      width: 100%;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      padding: 13px 14px;
+      font-size: 1rem;
+      color: var(--ink);
+      outline: none;
+      background: #fff;
+    }
+    .field-group input:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(255,108,44,.12);
+    }
+
+    .toggle-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+    .toggle-btn {
+      flex: 1;
+      min-width: 150px;
+      border: 1.5px solid var(--line);
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--ink);
+    }
+    .toggle-btn.active {
+      border-color: var(--orange);
+      background: #fff6f0;
+      color: #b54d15;
+      box-shadow: 0 0 0 3px rgba(255,108,44,.10);
+    }
+
+    .panel {
+      background: var(--bg);
+      border: 1px solid #e1edf5;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 18px;
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .notice,
+    .error,
+    .success {
+      border-radius: 14px;
+      padding: 13px 14px;
+      margin-top: 14px;
+      font-size: .95rem;
+      line-height: 1.5;
+      display: none;
+    }
+    .notice {
+      background: var(--warning);
+      color: var(--warning-text);
+      border: 1px solid #f0ddbb;
+    }
+    .error {
+      background: var(--danger);
+      color: var(--danger-text);
+      border: 1px solid #f4cfc9;
+    }
+    .success {
+      background: var(--success);
+      color: var(--success-text);
+      border: 1px solid #cfe7d8;
+    }
+
+    .results-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .results-subtitle {
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 640px;
+    }
+
+    .results-toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .result-card {
+      border: 1.5px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 14px;
+      background: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-card.top {
+      border-color: rgba(255,108,44,.5);
+      box-shadow: 0 14px 26px rgba(255,108,44,.12);
+      background: linear-gradient(180deg, #fff9f6, #fff);
+    }
+
+    .top-chip {
+      position: absolute;
+      top: 0;
+      right: 18px;
+      background: var(--orange);
+      color: #fff;
+      padding: 7px 12px;
+      border-radius: 0 0 12px 12px;
+      font-size: .76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .hood-name {
+      margin: 0 0 6px;
+      font-size: 1.2rem;
+    }
+
+    .status-pill {
+      display: inline-block;
+      border-radius: 999px;
+      font-size: .8rem;
+      font-weight: 800;
+      padding: 6px 10px;
+      margin-bottom: 8px;
+    }
+    .status-new { background: #e9f4fb; color: var(--blue); }
+    .status-resale { background: #fff1e6; color: #a6631c; }
+    .status-both { background: #f2edff; color: #5c3ba3; }
+
+    .hood-meta,
+    .hood-copy {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .match-box {
+      min-width: 120px;
+      text-align: right;
+    }
+
+    .match-pct {
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: var(--orange);
+      line-height: 1;
+    }
+
+    .match-label {
+      font-size: .84rem;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    .bar {
+      margin: 12px 0 14px;
+      height: 8px;
+      border-radius: 999px;
+      background: #e8f0f5;
+      overflow: hidden;
+    }
+
+    .bar > span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--orange) 0%, #ff9a55 100%);
+    }
+
+    .reason-title {
+      margin: 12px 0 8px;
+      font-size: .95rem;
+      font-weight: 800;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      background: #f2f8fc;
+      color: var(--blue);
+      border: 1px solid #d7e6ef;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    .reasons {
+      display: grid;
+      gap: 8px;
+      margin-top: 8px;
+      padding-left: 18px;
+      color: var(--ink);
+    }
+
+    .cta {
+      margin-top: 18px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
+      color: #fff;
+      padding: 22px;
+    }
+
+    .cta h3 {
+      margin: 0 0 8px;
+      font-size: 1.35rem;
+    }
+
+    .cta p {
+      margin: 0;
+      color: rgba(255,255,255,.9);
+      line-height: 1.65;
+      max-width: 680px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .cta .btn-primary,
+    .cta .btn-ghost {
+      flex: 0 0 auto;
+      min-width: 220px;
+    }
+
+    .agent-card {
+      margin-top: 16px;
+      background: #fbfdff;
+      border: 1px solid #e2edf4;
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .agent-card h4 {
+      margin: 0 0 6px;
+      font-size: 1.15rem;
+    }
+
+    .agent-card p {
+      margin: 5px 0;
+      color: var(--muted);
+    }
+
+    .agent-card a {
+      color: var(--orange);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .small-print {
+      margin-top: 18px;
+      font-size: .84rem;
+      line-height: 1.65;
+      color: var(--muted);
+      background: #f6fbff;
+      border: 1px solid #e1edf5;
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 720px) {
+      body { padding: 18px 10px; }
+      .hero, .content, .progress-wrap { padding-left: 18px; padding-right: 18px; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .btn-primary, .btn-secondary, .cta .btn-primary, .cta .btn-ghost { width: 100%; }
+      .results-head { display: block; }
+      .match-box { min-width: 0; text-align: left; }
+      .card-top { display: block; }
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+<div class="hero">
+<div class="brand-row">
+<div class="brand">NextHome Excellence</div>
+<div class="hero-badge">Built for Wellen Park homebuyers</div>
+</div>
+<h1>Find your best-fit Wellen Park neighborhood</h1>
+<p>
+        Answer 11 quick questions and get a personalized shortlist of communities that match your budget,
+        lifestyle, home style, and timing. Then Julie Willett will send you a custom follow-up with the best current options.
+      </p>
+</div>
+<div class="frame">
+<div class="progress-wrap">
+<div class="progress-top">
+<div id="progressLabel">Question 1 of 11</div>
+<div id="progressHint">About 2 minutes</div>
+</div>
+<div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+<div class="content">
+<div class="step active" id="step-0"></div>
+<div class="step" id="step-1"></div>
+<div class="step" id="step-2"></div>
+<div class="step" id="step-3"></div>
+<div class="step" id="step-4"></div>
+<div class="step" id="step-5"></div>
+<div class="step" id="step-6"></div>
+<div class="step" id="step-7"></div>
+<div class="step" id="step-8"></div>
+<div class="step" id="step-9"></div>
+<div class="step" id="step-10"></div>
+<div class="step" id="step-contact">
+<div class="eyebrow">Final step</div>
+<h2 class="question-title">Where should Julie send your personalized neighborhood guide?</h2>
+<p class="helper">
+            Your matches are ready. Choose email or text, and Julie will also be able to follow up with neighborhood insights,
+            builder inventory, or resale options that fit what you selected.
+          </p>
+<div class="panel">
+<strong>What you’ll get:</strong>
+<div class="mini-list">
+<div>• Your top Wellen Park neighborhood matches</div>
+<div>• A better-fit shortlist based on budget, home type, golf preference, and lifestyle</div>
+<div>• A quick follow-up from Julie if you want tours, pricing guidance, or builder vs. resale advice</div>
+</div>
+</div>
+<div style="font-weight:800; margin-bottom:10px;">Send my results by:</div>
+<div class="toggle-row">
+<button class="toggle-btn active" id="toggle-email" onclick="switchContact('email')" type="button">Email me</button>
+<button class="toggle-btn" id="toggle-phone" onclick="switchContact('phone')" type="button">Text me</button>
+</div>
+<div class="grid-2">
+<div class="field-group">
+<label for="input-name">First name</label>
+<input autocomplete="given-name" id="input-name" placeholder="e.g. Sarah" type="text"/>
+</div>
+<div class="field-group">
+<label for="input-last">Last name</label>
+<input autocomplete="family-name" id="input-last" placeholder="Optional" type="text"/>
+</div>
+</div>
+<div class="grid-2">
+<div class="field-group" id="email-field">
+<label for="input-email">Email address</label>
+<input autocomplete="email" id="input-email" placeholder="sarah@example.com" type="email"/>
+</div>
+<div class="field-group hidden" id="phone-field">
+<label for="input-phone">Cell phone</label>
+<input autocomplete="tel" id="input-phone" placeholder="(941) 555-0100" type="tel"/>
+</div>
+<div class="field-group">
+<label for="input-notes">Anything Julie should know?</label>
+<input id="input-notes" placeholder="Optional: schools, move date, waterfront, etc." type="text"/>
+</div>
+</div>
+<div class="field-group">
+<label for="input-booking">Would you like a tour or quick consult link too?</label>
+<input id="input-booking" placeholder="Optional: yes, virtual tour, builder info, resale only, etc." type="text"/>
+</div>
+<div class="success" id="contact-success"></div>
+<div class="error" id="contact-error"></div>
+<div class="notice" id="contact-notice"></div>
+<div class="nav-row">
+<button class="btn btn-secondary" onclick="prevStep('contact')" type="button">Back</button>
+<button class="btn btn-primary" id="submitLeadBtn" onclick="submitContact()" type="button">Send my results</button>
+</div>
+<p class="helper" style="margin-top:14px; font-size:.9rem;">
+            Your information goes only to Julie Willett and is used to respond to your quiz request.
+          </p>
+</div>
+<div class="step" id="step-results">
+<div class="results-head">
+<div>
+<div class="eyebrow">Your results</div>
+<h2 class="question-title" id="resultsHeading">Your best-fit Wellen Park neighborhoods</h2>
+<div class="results-subtitle" id="resultsSubtitle">
+                Based on your answers, these are the communities that appear to fit you best right now.
+              </div>
+<div class="results-toolbar">
+<button class="btn btn-secondary" onclick="copyResultsSummary()" type="button">Copy my results</button>
+<button class="btn btn-secondary" onclick="restartQuiz()" type="button">Start over</button>
+</div>
+</div>
+</div>
+<div class="success" id="resultsSuccess"></div>
+<div id="resultsList"></div>
+<div class="cta">
+<h3>Want Julie’s opinion on the top 2 or 3 choices?</h3>
+<p>
+              Julie Willett lives in Wellen Park and can help you compare builder communities, resale options,
+              HOA/CDD costs, golf choices, and which neighborhoods best fit your timeline.
+            </p>
+<div class="cta-buttons">
+<a class="btn btn-primary" href="tel:+19412237088">Call or text Julie: (941) 223-7088</a>
+<a class="btn btn-ghost" href="https://www.sellingwellen.com" id="bookingLink" rel="noopener" target="_blank">View homes &amp; book a consult</a>
+</div>
+</div>
+<div class="agent-card">
+<img src="HeadshotJulie.jpg" style="width:120px;border-radius:50%;margin-bottom:10px;"/>
+<p class="agent-name">Julie Willett</p>
+<p class="agent-title">Broker Associate - REALTOR® | NextHome Excellence</p>
+<p class="agent-info"><strong>Cell:</strong> <a class="agent-link" href="tel:+19412237088">(941) 223-7088</a></p>
+<p class="agent-info"><strong>Email:</strong> <a class="agent-link" href="mailto:nexthomejulie@gmail.com">nexthomejulie@gmail.com</a></p>
+<p class="agent-info"><strong>Web:</strong> <a class="agent-link" href="https://www.SellingWellen.com" target="_blank">www.SellingWellen.com</a></p>
+<img src="NextHomeLogo.png" style="width:140px;margin-top:12px;"/>
+</div>
+<div class="small-print">
+            This quiz is for informational purposes only and is based on lifestyle, pricing, home-type, and amenity preferences.
+            Availability, pricing, builder incentives, and neighborhood details can change. We are committed to Equal Housing Opportunity,
+            and results are not based on protected-class preferences.
+          </div>
+</div>
+</div>
+</div>
+</div>
+<script>
+    const FORM_ENDPOINT = 'https://formspree.io/f/mykbaopl';
+    const BOOKING_URL = 'https://www.sellingwellen.com';
+    const THANK_YOU_REDIRECT_URL = ''; // Optional: paste your Calendly or thank-you page link here.
+
+    const answers = {};
+    let contactType = 'email';
+    let lastResults = [];
+    let leadSubmitted = false;
+    let leadPayloadCache = null;
+
+    const questions = [
+      {
+        label: 'Question 1 of 11',
+        title: 'Who is making this move with you?',
+        helper: 'This helps narrow communities that often appeal to families, active adults, seasonal owners, or quieter households.',
+        options: [
+          ['Just me and my partner / spouse', 'couple'],
+          ['Just me', 'solo'],
+          ['All-ages community with kids at home', 'family_kids'],
+          ['Empty nesters / grown kids', 'family_grown']
+        ]
+      },
+      {
+        label: 'Question 2 of 11',
+        title: 'What stage of life best describes you right now?',
+        helper: 'A few Wellen Park communities are especially strong for 55+ or more active social lifestyles.',
+        options: [
+          ['Active 55+ and ready to enjoy the lifestyle', 'active55'],
+          ['Retiring soon — this may be my forever home', 'retire_soon'],
+          ['Still working and need flexibility', 'working'],
+          ['Seasonal / snowbird — part-time Florida', 'seasonal']
+        ]
+      },
+      {
+        label: 'Question 3 of 11',
+        title: 'What is your target budget range?',
+        helper: 'This helps avoid showing neighborhoods that are mostly above or below what you want to spend.',
+        options: [
+          ['Under $350k', 'under350k'],
+          ['$350k to $500k', '350_500'],
+          ['$500k to $700k', '500_700'],
+          ['$700k to $900k', '700_900'],
+          ['$900k+', 'over900k']
+        ]
+      },
+      {
+        label: 'Question 4 of 11',
+        title: 'What type of home are you hoping for?',
+        helper: 'Home style is now treated as a stronger match factor so condo and villa buyers do not keep seeing mostly large single-family picks.',
+        options: [
+          ['Villa or attached home — low maintenance', 'villa'],
+          ['Single-family home — cozy or mid-size', 'sfh_small'],
+          ['Single-family home — larger or luxury', 'sfh_large'],
+          ['Condo, coach home, or townhome', 'condo'],
+          ['Open to anything', 'flexible']
+        ]
+      },
+      {
+        label: 'Question 5 of 11',
+        title: 'How important is golf to your lifestyle?',
+        helper: 'Golf preference is now a stronger filter so golf-heavy communities do not crowd the results when golf is not important.',
+        options: [
+          ['Essential — I want bundled or deeded golf', 'golf_bundled'],
+          ['Nice to have — optional or nearby golf is enough', 'golf_optional'],
+          ['Not a priority — I prefer other activities', 'golf_no']
+        ]
+      },
+      {
+        label: 'Question 6 of 11',
+        title: 'What kind of community vibe feels right?',
+        options: [
+          ['Very social — clubs, events, activities', 'social_active'],
+          ['Quiet and private — peaceful retreat', 'quiet_private'],
+          ['Balanced — friendly but not nonstop', 'balanced'],
+          ['Nature-focused — trails, preserves, outdoors', 'nature_focus']
+        ]
+      },
+      {
+        label: 'Question 7 of 11',
+        title: 'How do you feel about HOA and CDD fees?',
+        options: [
+          ['Keep them as low as possible', 'fees_low'],
+          ['Moderate fees are fine for strong amenities', 'fees_medium'],
+          ['I am fine with higher fees for a premium lifestyle', 'fees_high'],
+          ['Not sure — I want guidance on this', 'fees_unsure']
+        ]
+      },
+      {
+        label: 'Question 8 of 11',
+        title: 'Which amenities matter most?',
+        options: [
+          ['Resort-style pools, pickleball, fitness center', 'amenity_resort'],
+          ['Trails, kayaking, preserves, fishing', 'amenity_nature'],
+          ['Canal or water views', 'amenity_waterfront'],
+          ['Clubhouse, social events, on-site dining', 'amenity_social'],
+          ['Simple — maybe a pool and peace and quiet', 'amenity_minimal'],
+          ['I do not need amenities — great home and location matter most', 'amenity_none']
+        ]
+      },
+      {
+        label: 'Question 9 of 11',
+        title: 'How close to Downtown Wellen and shopping do you want to be?',
+        options: [
+          ['Walking distance is ideal', 'walkable'],
+          ['A short drive is totally fine', 'short_drive'],
+          ['Privacy matters more than location', 'dont_care_loc']
+        ]
+      },
+      {
+        label: 'Question 10 of 11',
+        title: 'Do you prefer new construction or an established resale neighborhood?',
+        helper: 'This is now used as a stronger weighting factor so builder communities and mature resale neighborhoods separate more clearly.',
+        options: [
+          ['New construction — builder warranty and fresh finishes', 'new_construction'],
+          ['Established resale — mature landscaping and move-in-ready options', 'resale'],
+          ['Either is fine — show me the best overall options', 'either_type']
+        ]
+      },
+      {
+        label: 'Question 11 of 11',
+        title: 'When are you looking to make your move?',
+        options: [
+          ['As soon as possible', 'asap'],
+          ['Within 6 months', 'sixmonths'],
+          ['Within a year', 'year'],
+          ['Just exploring for now', 'exploring']
+        ]
+      }
+    ];
+
+    const neighborhoods = [
+      { n:'IslandWalk', status:'resale', statusLabel:'Resale only', summary:'DiVosta | roughly $400s-$750s | canals, active amenities, established feel', tags:['Canal views','Two amenity centers','Resort pools','Tennis & pickleball'], homeTypes:['villa','sfh_small','flexible'], budget:['350_500','500_700','700_900'], age:'all', golf:'none', proximity:'walkable', feeLevel:'medium', style:'resale', scores:{couple:1,resale:4,either_type:1,amenity_waterfront:4,amenity_resort:2,amenity_social:2,social_active:3,balanced:1,'350_500':2,'500_700':3,sfh_small:3,villa:2,flexible:1,golf_no:1,fees_medium:2,short_drive:1,walkable:2} },
+      { n:'Gran Paradiso', status:'resale', statusLabel:'Resale only', summary:'Lennar | roughly $400s-$800s | Tuscan style, near Downtown Wellen, strong amenity package', tags:['Near downtown','Resort pool','Yoga studio','Tennis & pickleball'], homeTypes:['villa','sfh_small','sfh_large','flexible'], budget:['350_500','500_700','700_900'], age:'all', golf:'none', proximity:'walkable', feeLevel:'medium', style:'resale', scores:{couple:1,retire_soon:2,resale:4,either_type:1,amenity_resort:2,amenity_social:3,social_active:2,balanced:2,'500_700':3,'700_900':2,sfh_small:2,sfh_large:1,villa:2,flexible:1,golf_no:1,fees_medium:2,walkable:4} },
+      { n:'Grand Palm', status:'resale', statusLabel:'Resale only', summary:'Neal Communities | roughly $400s-$700s | trails, kayak launch, no CDD feel appeal', tags:['No CDD fees','Water slides','Kayak launch','9 miles of trails'], homeTypes:['sfh_small','sfh_large','flexible'], budget:['350_500','500_700','700_900'], age:'all', golf:'none', proximity:'short_drive', feeLevel:'low', style:'resale', scores:{family_kids:3,couple:1,resale:4,either_type:1,amenity_nature:4,amenity_resort:2,nature_focus:4,'500_700':3,'700_900':2,sfh_small:2,sfh_large:1,flexible:1,golf_no:2,fees_low:3,short_drive:2} },
+      { n:'Renaissance', status:'resale', statusLabel:'Resale only', summary:'Mattamy | roughly $350s-$550s | villas and single-family, solid resort-style amenities', tags:['Resort pool','Tennis & pickleball','Dog park','Fire pit'], homeTypes:['villa','sfh_small','flexible'], budget:['350_500','500_700'], age:'all', golf:'none', proximity:'short_drive', feeLevel:'medium', style:'resale', scores:{couple:1,retire_soon:1,active55:1,resale:4,either_type:1,amenity_resort:3,amenity_social:2,social_active:2,balanced:2,'350_500':3,'500_700':1,villa:3,sfh_small:2,flexible:1,golf_no:1,fees_medium:2,short_drive:2} },
+      { n:'Sarasota National', status:'resale', statusLabel:'Resale only', summary:'WCI / Lennar | roughly $300s-$600s | bundled golf, tiki bar, strong resort atmosphere', tags:['Bundled golf','Championship course','Resort pool & tiki bar','Tennis & pickleball'], homeTypes:['villa','condo','sfh_small','flexible'], budget:['under350k','350_500','500_700'], age:'all', golf:'bundled', proximity:'short_drive', feeLevel:'medium', style:'resale', scores:{couple:2,retire_soon:2,active55:1,resale:4,either_type:1,golf_bundled:5,golf_optional:1,amenity_resort:3,amenity_social:2,'350_500':2,'500_700':3,villa:2,condo:2,sfh_small:1,flexible:1,fees_medium:2,short_drive:2} },
+      { n:'The Preserve', status:'resale', statusLabel:'Resale only', summary:'DR Horton | roughly $300s-$400s | smaller, affordable, lower-fee feel', tags:['Small community','Affordable','Pool & clubhouse','Low fees'], homeTypes:['villa','sfh_small','flexible'], budget:['under350k','350_500'], age:'all', golf:'none', proximity:'short_drive', feeLevel:'low', style:'resale', scores:{couple:1,solo:1,seasonal:2,resale:4,either_type:1,amenity_minimal:3,amenity_none:2,quiet_private:2,under350k:4,'350_500':2,sfh_small:3,villa:2,flexible:1,golf_no:2,fees_low:4,short_drive:2} },
+      { n:'Tortuga', status:'resale', statusLabel:'Resale only', summary:'Small quiet enclave | around the $500s | low-maintenance and private feel', tags:['Very small community','Low maintenance','Privacy','Quiet'], homeTypes:['sfh_small','villa','flexible'], budget:['500_700'], age:'all', golf:'none', proximity:'dont_care_loc', feeLevel:'low', style:'resale', scores:{couple:1,solo:1,seasonal:2,retire_soon:1,resale:4,either_type:1,quiet_private:4,amenity_minimal:2,amenity_none:3,'500_700':3,sfh_small:3,villa:1,flexible:1,golf_no:2,fees_low:3,dont_care_loc:3,short_drive:1} },
+      { n:'Antigua', status:'resale', statusLabel:'Resale only', summary:'Lennar | roughly $400s-$600s | gated, water and preserve views, maintenance-friendly', tags:['Gated','Water & preserve views','Maintenance-free','Quiet'], homeTypes:['sfh_small','villa','flexible'], budget:['350_500','500_700'], age:'all', golf:'none', proximity:'short_drive', feeLevel:'low', style:'resale', scores:{couple:1,solo:1,seasonal:2,resale:4,either_type:1,quiet_private:3,amenity_minimal:2,amenity_none:3,'350_500':3,'500_700':2,sfh_small:3,villa:1,flexible:1,golf_no:1,fees_low:3,short_drive:1,walkable:1} },
+      { n:'Oasis', status:'resale', statusLabel:'Resale only', summary:'M/I Homes | roughly $500s-$700s | smaller community with pool, pickleball, and trails', tags:['Quiet setting','Pool & clubhouse','Pickleball','Walking trails'], homeTypes:['sfh_small','flexible'], budget:['500_700'], age:'all', golf:'none', proximity:'short_drive', feeLevel:'low', style:'resale', scores:{couple:1,solo:1,retire_soon:1,resale:4,either_type:1,quiet_private:2,nature_focus:2,amenity_minimal:2,amenity_none:1,'500_700':3,sfh_small:3,flexible:1,golf_no:2,fees_low:2,short_drive:1} },
+      { n:'Wellen Park Golf & Country Club', status:'new', statusLabel:'New construction', summary:'Lennar | condos to larger single-family homes | bundled golf and restaurant-style amenities', tags:['Bundled golf','Condos & SFH','Resort amenities','On-site restaurant'], homeTypes:['condo','sfh_small','sfh_large','flexible'], budget:['under350k','350_500','500_700','700_900','over900k'], age:'all', golf:'bundled', proximity:'short_drive', feeLevel:'high', style:'new', scores:{couple:2,retire_soon:2,active55:1,new_construction:4,either_type:1,golf_bundled:5,amenity_resort:3,amenity_social:3,'350_500':2,'500_700':3,'700_900':3,sfh_small:1,sfh_large:2,condo:3,flexible:1,fees_high:2,short_drive:1} },
+      { n:'Boca Royale Golf & Country Club', status:'both', statusLabel:'New + resale', summary:'Neal Communities | optional golf, villas and single-family, lakes and preserves', tags:['Optional golf','Championship course','Villas & SFH','Lakes & preserves'], homeTypes:['villa','sfh_small','flexible'], budget:['350_500','500_700','700_900'], age:'all', golf:'optional', proximity:'short_drive', feeLevel:'medium', style:'both', scores:{couple:2,retire_soon:2,active55:1,new_construction:2,resale:2,either_type:2,golf_optional:4,golf_bundled:1,amenity_resort:2,nature_focus:2,balanced:2,'350_500':3,'500_700':3,villa:3,sfh_small:1,flexible:1,fees_medium:2,short_drive:2} },
+      { n:'Brightmore', status:'new', statusLabel:'New construction | 55+ only', summary:'Mattamy | 55+ only | villas and single-family from the mid $300s with major pickleball focus', tags:['55+ only','Stadium pickleball','Resort pools','Wellness programs'], homeTypes:['villa','sfh_small','flexible'], budget:['350_500','500_700'], age:'55+', golf:'none', proximity:'short_drive', feeLevel:'medium', style:'new', scores:{active55:5,retire_soon:3,new_construction:4,either_type:1,golf_no:2,amenity_resort:3,amenity_social:3,social_active:4,'350_500':3,'500_700':2,villa:3,sfh_small:2,flexible:1,fees_medium:2,short_drive:1} },
+      { n:'Sunstone', status:'new', statusLabel:'New construction', summary:'Mattamy | all ages | villas and single-family from roughly the $350s-$600s', tags:['All-ages community','Resort pool','Pickleball & bocce','Dog park'], homeTypes:['villa','sfh_small','flexible'], budget:['350_500','500_700'], age:'all', golf:'none', proximity:'short_drive', feeLevel:'medium', style:'new', scores:{family_kids:3,couple:1,working:2,new_construction:4,either_type:1,golf_no:2,amenity_resort:2,balanced:2,'350_500':3,'500_700':3,villa:2,sfh_small:3,flexible:1,fees_medium:2,short_drive:1} },
+      { n:'Lakespur', status:'new', statusLabel:'New construction', summary:'Pulte, Lennar, Mattamy | all ages | single-family plus condos from roughly the $300s-$500s', tags:['All ages','Lake & preserve views','Condo options','Entry-level new construction'], homeTypes:['sfh_small','condo','flexible'], budget:['under350k','350_500','500_700'], age:'all', golf:'none', proximity:'short_drive', feeLevel:'medium', style:'new', scores:{family_kids:3,couple:1,working:2,new_construction:4,either_type:1,golf_no:2,amenity_nature:2,balanced:2,under350k:2,'350_500':3,'500_700':1,sfh_small:3,condo:3,flexible:1,fees_medium:2,short_drive:1} },
+      { n:'Palmera', status:'new', statusLabel:'New construction', summary:'Multi-builder | roughly $400s-$700s+ | more upscale amenities, dining, splash pad, and variety', tags:['Golf simulator','On-site dining','Splash pad','Coastal clubhouse'], homeTypes:['sfh_large','condo','villa','flexible'], budget:['350_500','500_700','700_900'], age:'all', golf:'optional', proximity:'walkable', feeLevel:'medium', style:'new', scores:{couple:1,working:1,new_construction:4,either_type:1,amenity_resort:2,amenity_social:4,social_active:2,balanced:2,'500_700':3,'700_900':2,sfh_large:3,condo:1,villa:1,flexible:1,fees_medium:2,walkable:3,short_drive:1} },
+      { n:'Everly', status:'new', statusLabel:'New construction', summary:'Custom and semi-custom luxury estates | roughly $700s-$2M+ | gated and private', tags:['Custom estates','Semi-custom luxury','Gated','Private setting'], homeTypes:['sfh_large','flexible'], budget:['700_900','over900k'], age:'all', golf:'none', proximity:'dont_care_loc', feeLevel:'high', style:'new', scores:{couple:1,new_construction:4,either_type:1,quiet_private:4,'700_900':3,over900k:5,sfh_large:5,flexible:1,fees_high:2,dont_care_loc:3,short_drive:1} },
+      { n:'Oakbend', status:'new', statusLabel:'Pre-construction', summary:'ICI Homes, Toll Brothers and more | high $600s+ | gated with luxury single-family focus', tags:['Pre-construction pricing','Multiple builders','Gated','Luxury SFH'], homeTypes:['sfh_large','flexible'], budget:['700_900','over900k'], age:'all', golf:'none', proximity:'short_drive', feeLevel:'high', style:'new', scores:{couple:1,working:1,new_construction:4,either_type:1,amenity_resort:2,quiet_private:1,'700_900':3,over900k:3,sfh_large:5,flexible:1,fees_high:2,short_drive:1} },
+      { n:'Esplanade at Wellen Park', status:'new', statusLabel:'New | opening 2026', summary:'Taylor Morrison | optional golf and wellness-forward resort style | likely stronger fit for lifestyle-focused buyers', tags:['Optional golf','Wellness programs','Concierge services','Resort-style'], homeTypes:['sfh_large','flexible'], budget:['500_700','700_900','over900k'], age:'all', golf:'optional', proximity:'short_drive', feeLevel:'high', style:'new', scores:{couple:2,retire_soon:2,active55:1,new_construction:4,either_type:1,golf_optional:4,golf_bundled:1,amenity_resort:4,amenity_social:2,'500_700':1,'700_900':3,sfh_large:3,flexible:1,fees_high:3,short_drive:1} },
+      { n:'Ashcombe', status:'new', statusLabel:'New construction', summary:'Modern townhomes in the heart of Wellen Park | walkable and more approachable entry point', tags:['Townhomes','Walkable','Modern design','Affordable'], homeTypes:['condo','flexible'], budget:['under350k','350_500'], age:'all', golf:'none', proximity:'walkable', feeLevel:'low', style:'new', scores:{working:2,couple:1,solo:2,new_construction:4,either_type:1,golf_no:2,balanced:2,under350k:2,'350_500':3,condo:5,flexible:1,fees_low:2,walkable:5,short_drive:1} },
+      { n:'Sunstone Lakeside', status:'new', statusLabel:'Newest community', summary:'Brand-new lake-oriented release | good conversation starter for buyers who want the latest options', tags:['Brand new','Lake views','Latest release','Ask Julie for current pricing'], homeTypes:['sfh_small','flexible'], budget:['350_500','500_700'], age:'all', golf:'none', proximity:'short_drive', feeLevel:'medium', style:'new', scores:{new_construction:4,either_type:1,amenity_nature:2,nature_focus:2,'350_500':2,'500_700':2,sfh_small:2,flexible:2,fees_medium:1,short_drive:1} }
+    ];
+
+    function renderQuestions() {
+      questions.forEach((q, index) => {
+        const nextLabel = index === questions.length - 1 ? 'See my matches' : 'Next';
+        const html = `
+          <div class="eyebrow">${q.label}</div>
+          <h2 class="question-title">${q.title}</h2>
+          ${q.helper ? `<p class="helper">${q.helper}</p>` : ''}
+          <div class="options" data-q="${index}">
+            ${q.options.map(([label, value]) => `
+              <button type="button" class="option-btn" data-value="${value}" onclick="selectOption(this, ${index}, '${value}')">${label}</button>
+            `).join('')}
+          </div>
+          <div class="nav-row">
+            ${index > 0 ? `<button class="btn btn-secondary" type="button" onclick="prevStep(${index})">Back</button>` : ''}
+            <button class="btn btn-primary" type="button" id="next-${index}" disabled onclick="nextStep(${index})">${nextLabel}</button>
+          </div>
+        `;
+        document.getElementById(`step-${index}`).innerHTML = html;
+      });
+    }
+
+    function selectOption(button, questionIndex, value) {
+      const group = document.querySelector(`[data-q="${questionIndex}"]`);
+      group.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+      button.classList.add('selected');
+      answers[questionIndex] = value;
+      const nextBtn = document.getElementById(`next-${questionIndex}`);
+      if (nextBtn) nextBtn.disabled = false;
+    }
+
+    function updateProgress(stepIndex) {
+      const percent = Math.min(Math.round((stepIndex / questions.length) * 100), 100);
+      document.getElementById('progressFill').style.width = percent + '%';
+      const label = stepIndex < questions.length ? `Question ${stepIndex + 1} of ${questions.length}` : 'Results ready';
+      document.getElementById('progressLabel').textContent = label;
+      document.getElementById('progressHint').textContent = stepIndex < questions.length ? 'About 2 minutes' : 'Personalized shortlist prepared';
+    }
+
+    function showStep(id) {
+      document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+      document.getElementById(`step-${id}`).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function nextStep(index) {
+      if (answers[index] === undefined) return;
+      if (index === questions.length - 1) {
+        updateProgress(questions.length);
+        showStep('contact');
+      } else {
+        updateProgress(index + 1);
+        showStep(index + 1);
+      }
+    }
+
+    function prevStep(index) {
+      if (index === 'contact') {
+        updateProgress(questions.length - 1);
+        showStep(questions.length - 1);
+        return;
+      }
+      if (index > 0) {
+        updateProgress(index - 1);
+        showStep(index - 1);
+      }
+    }
+
+    function switchContact(type) {
+      contactType = type;
+      document.getElementById('toggle-email').classList.toggle('active', type === 'email');
+      document.getElementById('toggle-phone').classList.toggle('active', type === 'phone');
+      document.getElementById('email-field').classList.toggle('hidden', type !== 'email');
+      document.getElementById('phone-field').classList.toggle('hidden', type !== 'phone');
+    }
+
+    function normalizePhone(value) {
+      return value.replace(/[^\d]/g, '');
+    }
+
+    function getAnswerValue(index) {
+      return answers[index] || null;
+    }
+
+    function getLeadPayload() {
+      const firstName = document.getElementById('input-name').value.trim();
+      const lastName = document.getElementById('input-last').value.trim();
+      const email = document.getElementById('input-email').value.trim();
+      const phone = document.getElementById('input-phone').value.trim();
+      const notes = document.getElementById('input-notes').value.trim();
+      const bookingPref = document.getElementById('input-booking').value.trim();
+      return { firstName, lastName, email, phone, notes, bookingPref };
+    }
+
+    function validateLead(payload) {
+      if (!payload.firstName) return 'Please enter your first name.';
+      if (contactType === 'email') {
+        if (!payload.email) return 'Please enter your email address.';
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email);
+        if (!emailOk) return 'Please enter a valid email address.';
+      }
+      if (contactType === 'phone') {
+        const phoneDigits = normalizePhone(payload.phone);
+        if (!phoneDigits) return 'Please enter your cell phone number.';
+        if (phoneDigits.length < 10) return 'Please enter a valid phone number.';
+      }
+      return '';
+    }
+
+    function getAnswerSummaryText() {
+      return questions.map((q, idx) => {
+        const value = answers[idx];
+        const readable = q.options.find(option => option[1] === value);
+        return `${q.title}: ${readable ? readable[0] : value || 'Not answered'}`;
+      }).join('\n');
+    }
+
+    function showMessage(id, text) {
+      const el = document.getElementById(id);
+      if (!text) {
+        el.style.display = 'none';
+        el.textContent = '';
+        return;
+      }
+      el.textContent = text;
+      el.style.display = 'block';
+    }
+
+    function buildFormData(payload) {
+      const formData = new FormData();
+      const fullName = [payload.firstName, payload.lastName].filter(Boolean).join(' ');
+      formData.append('_subject', `New Wellen Park Quiz Lead: ${fullName || payload.firstName}`);
+      formData.append('First name', payload.firstName);
+      formData.append('Last name', payload.lastName || '');
+      formData.append('Email', payload.email || 'Not provided');
+      formData.append('Phone', payload.phone || 'Not provided');
+      formData.append('Contact preference', contactType === 'email' ? 'Email' : 'Text');
+      formData.append('Timeline', getAnswerValue(10) || '');
+      formData.append('Additional notes', payload.notes || '');
+      formData.append('Booking preference', payload.bookingPref || '');
+      formData.append('Quiz answers', getAnswerSummaryText());
+      formData.append('Top matches preview', computeMatches().slice(0, 3).map(x => x.n).join(', '));
+      formData.append('Submitted', new Date().toLocaleString());
+      return formData;
+    }
+
+    function savePendingLead(payload) {
+      const data = {
+        payload,
+        answers,
+        savedAt: new Date().toISOString()
+      };
+      localStorage.setItem('wellenParkQuizPendingLead', JSON.stringify(data));
+    }
+
+    async function submitContact() {
+      showMessage('contact-error', '');
+      showMessage('contact-notice', '');
+      showMessage('contact-success', '');
+
+      const payload = getLeadPayload();
+      const validationMessage = validateLead(payload);
+      if (validationMessage) {
+        showMessage('contact-error', validationMessage);
+        return;
+      }
+
+      leadPayloadCache = payload;
+      savePendingLead(payload);
+
+      const submitBtn = document.getElementById('submitLeadBtn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      try {
+        const response = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          body: buildFormData(payload),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (!response.ok) {
+          throw new Error('Lead form did not confirm successfully.');
+        }
+
+        leadSubmitted = true;
+        localStorage.removeItem('wellenParkQuizPendingLead');
+        showMessage('contact-success', 'Success — your results were sent to Julie and your personalized matches are below.');
+        showResults(payload.firstName || 'there');
+      } catch (error) {
+        leadSubmitted = false;
+        showMessage('contact-error', 'Your info may not have been delivered. Please try again, or call/text Julie directly at (941) 223-7088.');
+        showMessage('contact-notice', 'You can still view your matches below, but this version no longer pretends the lead went through. Please retry if you want Julie to receive your details.');
+        showResults(payload.firstName || 'there', true);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send my results';
+      }
+    }
+
+    function computeMatches() {
+      const budget = getAnswerValue(2);
+      const homeType = getAnswerValue(3);
+      const golfPref = getAnswerValue(4);
+      const vibe = getAnswerValue(5);
+      const feePref = getAnswerValue(6);
+      const amenityPref = getAnswerValue(7);
+      const locationPref = getAnswerValue(8);
+      const constructionPref = getAnswerValue(9);
+      const stageOfLife = getAnswerValue(1);
+
+      return neighborhoods.map((hood) => {
+        let score = 0;
+        const reasons = [];
+        let penalties = 0;
+
+        Object.values(answers).forEach((answer) => {
+          if (hood.scores[answer]) score += hood.scores[answer];
+        });
+
+        if (hood.age === '55+' && stageOfLife !== 'active55' && stageOfLife !== 'retire_soon') {
+          penalties += 22;
+          reasons.push('55+ only community, so it ranks lower unless that lifestyle fits.');
+        }
+        if (stageOfLife === 'active55' && hood.age === '55+') {
+          score += 10;
+          reasons.push('Strong fit for an active-adult lifestyle.');
+        }
+
+        if (budget && hood.budget.includes(budget)) {
+          score += 10;
+          reasons.push('Pricing range appears to line up with your target budget.');
+        } else if (budget && budget !== 'over900k') {
+          penalties += 8;
+        }
+
+        if (homeType && homeType !== 'flexible') {
+          if (hood.homeTypes.includes(homeType)) {
+            score += 9;
+            reasons.push('Home style matches what you said you want most.');
+          } else {
+            penalties += 9;
+          }
+        }
+
+        if (constructionPref === 'new_construction') {
+          if (hood.style === 'new' || hood.style === 'both') {
+            score += 8;
+            reasons.push('Better fit for a buyer leaning toward new construction.');
+          } else {
+            penalties += 8;
+          }
+        }
+        if (constructionPref === 'resale') {
+          if (hood.style === 'resale' || hood.style === 'both') {
+            score += 8;
+            reasons.push('Better fit for a buyer leaning toward established resale.');
+          } else {
+            penalties += 8;
+          }
+        }
+
+        if (golfPref === 'golf_bundled') {
+          if (hood.golf === 'bundled') {
+            score += 12;
+            reasons.push('Bundled golf is one of the biggest reasons this neighborhood scored well.');
+          } else if (hood.golf === 'optional') {
+            score += 5;
+          } else {
+            penalties += 10;
+          }
+        } else if (golfPref === 'golf_optional') {
+          if (hood.golf === 'optional') {
+            score += 10;
+            reasons.push('Optional golf appears to align with your preference.');
+          } else if (hood.golf === 'bundled') {
+            score += 4;
+          }
+        } else if (golfPref === 'golf_no') {
+          if (hood.golf === 'bundled') {
+            penalties += 10;
+          } else {
+            score += 5;
+          }
+        }
+
+        if (feePref && feePref !== 'fees_unsure') {
+          if (feePref === 'fees_low' && hood.feeLevel === 'low') { score += 7; reasons.push('Lower-fee profile looks closer to what you asked for.'); }
+          if (feePref === 'fees_medium' && hood.feeLevel === 'medium') { score += 6; }
+          if (feePref === 'fees_high' && hood.feeLevel === 'high') { score += 6; }
+        }
+
+        if (locationPref === 'walkable' && hood.proximity === 'walkable') {
+          score += 7;
+          reasons.push('Stronger fit for being close to Downtown Wellen and shopping.');
+        }
+        if (locationPref === 'dont_care_loc' && hood.proximity === 'dont_care_loc') {
+          score += 6;
+          reasons.push('Better fit for privacy over proximity.');
+        }
+        if (locationPref === 'short_drive' && hood.proximity === 'short_drive') {
+          score += 5;
+        }
+
+        if (vibe === 'social_active' && hood.tags.some(tag => /Resort|dining|pickleball|amenity|pool/i.test(tag))) {
+          score += 4;
+        }
+        if (vibe === 'nature_focus' && hood.tags.some(tag => /Lake|preserve|trail|kayak|canal|views/i.test(tag))) {
+          score += 4;
+        }
+        if (amenityPref === 'amenity_none' && hood.tags.length <= 4 && hood.feeLevel !== 'high') {
+          score += 4;
+        }
+
+        const finalScore = Math.max(score - penalties, 0);
+        return { ...hood, score: finalScore, reasons };
+      }).sort((a, b) => b.score - a.score);
+    }
+
+    function badge(status, label) {
+      const cls = status === 'new' ? 'status-new' : status === 'resale' ? 'status-resale' : 'status-both';
+      return `<span class="status-pill ${cls}">${label}</span>`;
+    }
+
+    function getTopReasons(item) {
+      const reasons = [...item.reasons];
+      if (getAnswerValue(5) === 'quiet_private' && item.tags.some(tag => /Quiet|Private|Gated/i.test(tag))) {
+        reasons.push('You indicated a quieter or more private feel.');
+      }
+      if (getAnswerValue(7) === 'amenity_waterfront' && item.tags.some(tag => /Canal|Lake|Water/i.test(tag))) {
+        reasons.push('Water-oriented views or setting matched one of your top amenities.');
+      }
+      if (getAnswerValue(7) === 'amenity_social' && item.tags.some(tag => /dining|clubhouse|Resort/i.test(tag))) {
+        reasons.push('Social amenities and gathering spaces appear to fit your answers.');
+      }
+      return Array.from(new Set(reasons)).slice(0, 3);
+    }
+
+    function showResults(firstName, submissionFailed = false) {
+      lastResults = computeMatches().slice(0, 5);
+      const topScore = lastResults[0] ? lastResults[0].score : 1;
+      const heading = document.getElementById('resultsHeading');
+      const subtitle = document.getElementById('resultsSubtitle');
+      const successBox = document.getElementById('resultsSuccess');
+
+      heading.textContent = `${firstName ? firstName + ', here are' : 'Here are'} your best-fit Wellen Park neighborhoods`;
+      subtitle.textContent = submissionFailed
+        ? 'These matches are based on your quiz answers. Your lead form may not have gone through, so please retry or contact Julie directly if you want a personal follow-up.'
+        : 'These matches are based on your quiz answers, with stronger filtering for budget, home type, golf preference, and new-vs-resale fit.';
+
+      showMessage('resultsSuccess', submissionFailed ? '' : 'Julie received your request, and your results are ready below.');
+
+      const html = lastResults.map((hood, index) => {
+        const pct = Math.max(55, Math.round((hood.score / topScore) * 100));
+        const reasons = getTopReasons(hood);
+        return `
+          <div class="result-card ${index === 0 ? 'top' : ''}">
+            ${index === 0 ? '<div class="top-chip">Best match</div>' : ''}
+            <div class="card-top">
+              <div>
+                ${badge(hood.status, hood.statusLabel)}
+                <h3 class="hood-name">${hood.n}</h3>
+                <div class="hood-copy">${hood.summary}</div>
+              </div>
+              <div class="match-box">
+                <div class="match-pct">${pct}%</div>
+                <div class="match-label">overall fit</div>
+              </div>
+            </div>
+            <div class="bar"><span style="width:${pct}%"></span></div>
+            ${reasons.length ? `
+              <div class="reason-title">Why it scored well for you</div>
+              <ul class="reasons">
+                ${reasons.map(reason => `<li>${reason}</li>`).join('')}
+              </ul>
+            ` : ''}
+            <div class="tags">${hood.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('resultsList').innerHTML = html;
+      document.getElementById('bookingLink').href = BOOKING_URL;
+      updateProgress(questions.length);
+      showStep('results');
+
+      if (THANK_YOU_REDIRECT_URL && leadSubmitted) {
+        window.setTimeout(() => {
+          window.location.href = THANK_YOU_REDIRECT_URL;
+        }, 1800);
+      }
+    }
+
+    function copyResultsSummary() {
+      if (!lastResults.length) return;
+      const text = [
+        'My Wellen Park neighborhood quiz results:',
+        ...lastResults.map((hood, idx) => `${idx + 1}. ${hood.n} — ${hood.summary}`),
+        '',
+        'Julie Willett | NextHome Excellence',
+        '(941) 223-7088 | https://www.SellingWellen.com'
+      ].join('\n');
+
+      navigator.clipboard.writeText(text).then(() => {
+        showMessage('resultsSuccess', 'Copied — you can now paste your results into a text or email.');
+      }).catch(() => {
+        showMessage('resultsSuccess', 'Your browser blocked copy. You can still highlight and copy the results manually.');
+      });
+    }
+
+    function restartQuiz() {
+      Object.keys(answers).forEach(key => delete answers[key]);
+      document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+      questions.forEach((_, idx) => {
+        const nextBtn = document.getElementById(`next-${idx}`);
+        if (nextBtn) nextBtn.disabled = true;
+      });
+      document.getElementById('input-name').value = '';
+      document.getElementById('input-last').value = '';
+      document.getElementById('input-email').value = '';
+      document.getElementById('input-phone').value = '';
+      document.getElementById('input-notes').value = '';
+      document.getElementById('input-booking').value = '';
+      showMessage('contact-error', '');
+      showMessage('contact-notice', '');
+      showMessage('contact-success', '');
+      showMessage('resultsSuccess', '');
+      contactType = 'email';
+      switchContact('email');
+      updateProgress(0);
+      showStep(0);
+    }
+
+    renderQuestions();
+    updateProgress(0);
+  </script>
+</body>
+</html>
